@@ -1,0 +1,529 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap");
+
+* {
+    box-sizing: border-box;
+}
+
+:root {
+    --bg-color: #eaf0f7;
+    --card-color: #ffffff;
+    --input-color: #eff3ff;
+    --primary-color: #2095f4;
+
+    --underweight-color: #2095f4;
+    --normal-color: #4caf50;
+    --overweight-color: #f4c542;
+    --obese-color: #f44336;
+
+    --text-color: #222222;
+    --muted-text: #666666;
+    --border-color: #cccccc;
+}
+
+body.dark-theme {
+    --bg-color: #121212;
+    --card-color: #1e1e1e;
+    --input-color: #2a2a2a;
+
+    --text-color: #f5f5f5;
+    --muted-text: #aaaaaa;
+    --border-color: #444444;
+}
+
+#theme-toggle {
+    position: fixed;
+    top: 1.5rem;
+    right: 1.5rem;
+
+    padding: 0.6rem 1rem;
+
+    background-color: var(--card-color);
+    color: var(--text-color);
+
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+
+    cursor: pointer;
+
+    font-family: inherit;
+}
+
+body, .bmi-card, .input-wrapper, .unit-switcher, #theme-toggle {
+    transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+}
+
+body {
+    margin: 0;
+    min-height: 100vh;
+    padding: 2rem;
+
+    font-family: "Inter", sans-serif;
+    letter-spacing: -0.01em;
+
+    background-color: var(--bg-color);
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.bmi-container {
+    width: 100%;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+/* Main Card */
+
+.bmi-card {
+    width: min(92rem, 100%);
+    min-height: 42rem;
+
+    padding: 4rem 5rem;
+
+    background-color: var(--card-color);
+    border-radius: 12px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+
+    display: flex;
+}
+
+
+/* Left Side */
+
+.left {
+    flex: 1;
+    padding-right: 4rem;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+
+/* Right Side */
+
+.right {
+    flex: 1;
+
+    padding-left: 4rem;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
+/* Header */
+
+.bmi-header {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    text-align: left;
+}
+
+.bmi-header h1 {
+    margin: 0;
+
+    font-size: 2.5rem;
+    color: var(--text-color);
+}
+
+.bmi-header p {
+    margin: 0.5rem 0 0;
+
+    font-size: 1.1rem;
+    color: var(--muted-text);
+}
+
+
+/* Unit Switcher */
+
+.unit-switcher {
+    display: flex;
+
+    width: fit-content;
+
+
+    background-color: var(--input-color);
+
+    border: 1px solid var(--border-color);
+    border-radius: 5px;
+}
+
+.unit-btn {
+    padding: 0.7rem 1.5rem;
+
+    background-color: transparent;
+    color: var(--muted-text);
+
+    border: none;
+    border-radius: 4px;
+
+    cursor: pointer;
+
+    font-family: inherit;
+    font-size: 0.9rem;
+    font-weight: 500;
+    letter-spacing: inherit;
+
+    transition: background-color 0.2s ease, color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.unit-btn:hover {
+    color: var(--text-color);
+}
+
+.unit-btn.active {
+    background-color: var(--primary-color);
+    color: var(--card-color);
+
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12);
+}
+
+.unit-btn:focus-visible {
+    outline: 3px solid rgba(32, 149, 244, 0.25);
+    outline-offset: 2px;
+}
+
+/* Form */
+
+.bmi-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+
+    margin-top: 2rem;
+}
+
+.input-group {
+    display: flex;
+    flex-direction: column;
+}
+
+.input-group label {
+    margin-bottom: 0.35rem;
+
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--text-color);
+}
+
+.input-description {
+    margin: 0 0 0.6rem;
+
+    font-size: 0.9rem;
+    color: var(--muted-text);
+}
+
+.input-wrapper {
+    display: flex;
+    align-items: center;
+
+    height: 3rem;
+    padding: 0 0.9rem;
+
+    background-color: var(--input-color);
+    border: 1px solid var(--primary-color);
+    border-radius: 6px;
+
+    transition:
+        border-color 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+.input-wrapper input {
+    width: 100%;
+    height: 100%;
+
+    padding: 0;
+
+    border: none;
+    outline: none;
+
+    background: transparent;
+
+    color: var(--text-color);
+    font-family: inherit;
+    font-size: 1rem;
+    letter-spacing: inherit;
+}
+
+.input-wrapper span {
+    color: var(--muted-text);
+
+    font-size: 0.95rem;
+    font-weight: 600;
+}
+
+.input-wrapper:focus-within {
+    box-shadow: 0 0 0 2px rgba(32, 149, 244, 0.15);
+}
+
+
+/* Input Error State */
+
+.input-wrapper.error {
+    border-color: var(--obese-color);
+
+    box-shadow: 0 0 0 2px rgba(244, 67, 54, 0.1);
+}
+
+.input-error {
+    min-height: 1rem;
+
+    margin-top: 0.35rem;
+
+    color: var(--obese-color);
+    font-size: 0.8rem;
+}
+
+
+/* Button */
+
+#calculate-btn {
+    width: 100%;
+
+    margin-top: 0.5rem;
+    padding: 0.8rem 1rem;
+
+    background-color: var(--primary-color);
+    color: #ffffff;
+
+    border: 1px solid var(--primary-color);
+    border-radius: 6px;
+
+    cursor: pointer;
+
+    font-family: inherit;
+    font-size: 1rem;
+    font-weight: 600;
+    letter-spacing: inherit;
+
+    transition:
+        opacity 0.2s ease,
+        transform 0.1s ease;
+}
+
+#calculate-btn:hover {
+    opacity: 0.9;
+}
+
+#calculate-btn:active {
+    transform: translateY(1px);
+}
+
+#calculate-btn:focus-visible {
+    outline: 3px solid rgba(32, 149, 244, 0.25);
+    outline-offset: 2px;
+}
+
+
+/* Results */
+
+.result-section {
+    width: 100%;
+
+    text-align: center;
+}
+
+.result-label {
+    margin: 0;
+
+    font-size: 1rem;
+    color: var(--muted-text);
+}
+
+#bmi-value {
+    margin: 0.25rem 0;
+
+    font-size: 3rem;
+    color: var(--text-color);
+
+    transition:
+        opacity 0.2s ease,
+        transform 0.2s ease;
+}
+
+#bmi-category {
+    margin: 0;
+
+    font-size: 1.1rem;
+    color: var(--muted-text);
+
+    transition: color 0.2s ease;
+}
+
+
+/* Category Colors */
+
+#bmi-category.underweight {
+    color: var(--underweight-color);
+}
+
+#bmi-category.normal {
+    color: var(--normal-color);
+}
+
+#bmi-category.overweight {
+    color: var(--overweight-color);
+}
+
+#bmi-category.obese {
+    color: var(--obese-color);
+}
+
+
+/* Gauge SVG Pre-Made */
+
+.gauge-chart {
+    display: block;
+
+    width: 100%;
+    max-width: 24rem;
+    height: auto;
+
+    margin: 1.5rem auto 0;
+}
+
+.gauge-text {
+    text-anchor: middle;
+
+    fill: var(--muted-text);
+
+    font-weight: 500;
+    font-size: 80%;
+}
+
+.donut-ring {
+    cx: 40;
+    cy: 40;
+    r: 31.8309886184;
+
+    fill: transparent;
+
+    stroke: #d2d3d4;
+    stroke-width: 15;
+}
+
+.donut-segment {
+    cx: 40;
+    cy: 40;
+    r: 31.8309886184;
+
+    fill: transparent;
+
+    stroke: var(--normal-color);
+    stroke-width: 15;
+
+    stroke-dasharray: 0 200;
+    stroke-dashoffset: -100;
+}
+
+
+/* BMI Legend */
+
+.bmi-legend {
+    display: grid;
+    grid-template-columns: repeat(2, auto);
+    justify-content: center;
+    gap: 0.7rem 2rem;
+
+    margin: 1.25rem 0 0;
+    padding: 1rem 0;
+
+    list-style: none;
+}
+
+.bmi-legend li {
+    display: flex;
+    align-items: center;
+    gap: 0.45rem;
+
+    color: var(--text-color);
+    font-size: 0.9rem;
+
+    opacity: 0.65;
+
+    transition:
+        opacity 0.2s ease,
+        font-weight 0.2s ease;
+}
+
+.bmi-legend li.active {
+    opacity: 1;
+    font-weight: 600;
+}
+
+.bmi-legend li::before {
+    content: "";
+
+    width: 8px;
+    height: 8px;
+
+    flex-shrink: 0;
+
+    border-radius: 50%;
+}
+
+.bmi-legend .underweight::before {
+    background-color: var(--underweight-color);
+}
+
+.bmi-legend .normal::before {
+    background-color: var(--normal-color);
+}
+
+.bmi-legend .overweight::before {
+    background-color: var(--overweight-color);
+}
+
+.bmi-legend .obese::before {
+    background-color: var(--obese-color);
+}
+
+
+/* Responsive */
+
+@media (max-width: 700px) {
+
+    body {
+        padding: 1rem;
+    }
+
+    .bmi-card {
+        padding: 2rem 1.25rem;
+
+        flex-direction: column;
+    }
+
+    .left {
+        padding-right: 0;
+    }
+
+    .right {
+        margin-top: 2.5rem;
+        padding-left: 0;
+        padding-top: 2.5rem;
+
+        border-left: none;
+        border-top: 1px solid var(--border-color);
+    }
+
+    .bmi-header {
+        text-align: center;
+    }
+
+    .bmi-header h1 {
+        font-size: 2rem;
+    }
+
+    .bmi-legend {
+        gap: 0.7rem 1rem;
+    }
+}

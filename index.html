@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BMI Calculator</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <button type="button" id="theme-toggle" aria-label="Toggle dark theme">⏾ Dark</button>
+    
+    <main class="bmi-container">
+
+        <section class="bmi-card">
+
+            <section class="left">
+                <header class="bmi-header">
+                    <h1>BMI Calculator</h1>
+                    <p>Calculate your Body Mass Index</p>
+                </header>
+
+                <form class="bmi-form" novalidate>
+
+                    <!-- Unit Switcher -->
+                    <div class="unit-switcher" role="group" aria-label="Unit system">
+                        <button type="button" class="unit-btn active" id="metric-btn" aria-pressed="true">
+                            Metric
+                        </button>
+
+                        <button type="button" class="unit-btn" id="imperial-btn" aria-pressed="false">
+                            Imperial
+                        </button>
+                    </div>
+
+                    <div class="input-group">
+                        <label for="weight">Weight</label>
+                        <p class="input-description">Enter your weight in kilograms</p>
+
+                        <div class="input-wrapper">
+                            <input type="number" id="weight" min="1" max="300" step="0.1"
+                                placeholder="Enter your weight" aria-describedby="weight-error" aria-invalid="false">
+                            <span id="weight-unit">kg</span>
+                        </div>
+
+                        <small class="input-error" id="weight-error"></small>
+                    </div>
+
+                    <div class="input-group">
+                        <label for="height">Height</label>
+                        <p class="input-description">Enter your height in centimeters</p>
+
+                        <div class="input-wrapper">
+                            <input type="number" id="height" min="50" max="250" step="0.1"
+                                placeholder="Enter your height" aria-describedby="height-error" aria-invalid="false">
+                            <span id="height-unit">cm</span>
+                        </div>
+
+                        <small class="input-error" id="height-error"></small>
+                    </div>
+
+                    <button type="submit" id="calculate-btn">
+                        Calculate BMI
+                    </button>
+                </form>
+            </section>
+
+            <hr />
+
+            <section class="right">
+                <section class="result-section" aria-live="polite">
+                    <p class="result-label">Your BMI</p>
+                    <h2 id="bmi-value">--</h2>
+                    <p id="bmi-category">Enter your details to calculate</p>
+
+                    <svg viewBox="0 0 80 40" class="gauge-chart" aria-label="BMI gauge">
+                        <circle class="donut-ring"></circle>
+                        <circle class="donut-segment">
+                            <animate class="gauge-animation" attributeType='XML' attributeName='stroke-dasharray'
+                                values='0 200; 0 200; 0 200' keyTimes='0; 0.1; 1' dur='1s' repeatCount='1'></animate>
+                        </circle>
+                        <text x="40" y="39.5" class="gauge-text">0%</text>
+                    </svg>
+
+                    <ul class="bmi-legend">
+                        <li class="underweight">Underweight: &lt; 18.5</li>
+                        <li class="normal">Normal: 18.5 - 24.9</li>
+                        <li class="overweight">Overweight: 25 - 29.9</li>
+                        <li class="obese">Obese: ≥ 30</li>
+                    </ul>
+                </section>
+            </section>
+
+        </section>
+    </main>
+
+    <script src="app.js"></script>
+</body>
+
+</html>
